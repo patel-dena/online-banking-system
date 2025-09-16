@@ -8,7 +8,13 @@ import java.util.List;
 public class AccountDTO {
 
     @Getter
+    private List<UserDTO> users;
+
+    @Getter
     private Long id;
+
+    @Getter
+    private String accountNumber;
 
     @Getter
     private String accountType;
@@ -19,8 +25,10 @@ public class AccountDTO {
     @Getter
     private List<TransactionDTO> transactions;
 
-    public AccountDTO(Long id, String accountType, BigDecimal balance, List<TransactionDTO> transactions) {
+    public AccountDTO(List<UserDTO> users, Long id, String accountNumber, String accountType, BigDecimal balance, List<TransactionDTO> transactions) {
+        this.users = users;
         this.id = id;
+        this.accountNumber = accountNumber;
         this.accountType = accountType;
         this.balance = balance;
         this.transactions = transactions;

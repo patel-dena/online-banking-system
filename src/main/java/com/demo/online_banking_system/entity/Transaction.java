@@ -19,7 +19,7 @@ public class Transaction {
     @Getter
     @Setter
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "account_id", nullable = false)
+    @JoinColumn(name = "account_number", nullable = false)
     private Account account;
 
     @Getter

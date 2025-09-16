@@ -20,6 +20,11 @@ public class User {
     @Getter
     @Setter
     @Column(nullable = false, unique = true)
+    private String usernumber;
+
+    @Getter
+    @Setter
+    @Column(nullable = false, unique = true)
     private String username;
 
     @Getter
@@ -73,7 +78,8 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password, String email,String phone, String address, String city, String state, String country, String zipcode, String role) {
+    public User(String usernumber, String username, String password, String email,String phone, String address, String city, String state, String country, String zipcode, String role) {
+        this.usernumber = usernumber;
         this.username = username;
         this.password = password;
         this.email = email;
@@ -84,5 +90,9 @@ public class User {
         this.country = country;
         this.zipcode = zipcode;
         this.role = role;
+    }
+
+    public List<Account> getAccounts() {
+        return accounts;
     }
 }

@@ -19,7 +19,13 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @GetMapping("/{username}")
+    // Get all accounts
+    @GetMapping
+    public List<AccountDTO> getAllAccounts() {
+        return accountService.getAllAccounts();
+    }
+
+    @GetMapping("/user/{username}")
     public List<AccountDTO> getAccounts(@PathVariable String username) {
         return accountService.getAccountsByUsername(username);
     }

@@ -20,8 +20,13 @@ public class Account {
     @Getter
     @Setter
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_number", nullable = false)
     private User user;
+
+    @Getter
+    @Setter
+    @Column(nullable = false, unique = true)
+    private String accountNumber;
 
     @Getter
     @Setter
@@ -38,13 +43,20 @@ public class Account {
 
     public Account() {}
 
-    public Account(User user, String accountType, BigDecimal balance) {
+    public Account(User user, String accountNumber, String accountType, BigDecimal balance) {
         this.user = user;
+        this.accountNumber = accountNumber;
         this.accountType = accountType;
         this.balance = balance;
     }
 
     public List<Transaction> getTransactions() {
         return transactions;
+    }
+
+    // Helper method to add transaction
+    public void addTransaction(Transaction transaction) {
+        transactions.add(transaction);
+        transaction.setAccount(this);
     }
 }
