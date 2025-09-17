@@ -3,12 +3,8 @@ package com.demo.online_banking_system.dto;
 import lombok.Getter;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 public class AccountDTO {
-
-    @Getter
-    private List<UserDTO> users;
 
     @Getter
     private Long id;
@@ -23,14 +19,13 @@ public class AccountDTO {
     private BigDecimal balance;
 
     @Getter
-    private List<TransactionDTO> transactions;
+    private String username;
 
-    public AccountDTO(List<UserDTO> users, Long id, String accountNumber, String accountType, BigDecimal balance, List<TransactionDTO> transactions) {
-        this.users = users;
+    public AccountDTO(Long id, String accountNumber, String accountType, BigDecimal balance, String username) {
         this.id = id;
         this.accountNumber = accountNumber;
         this.accountType = accountType;
         this.balance = balance;
-        this.transactions = transactions;
+        this.username = username;
     }
 }

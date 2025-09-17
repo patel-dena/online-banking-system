@@ -49,14 +49,4 @@ public class Account {
         this.accountType = accountType;
         this.balance = balance;
     }
-
-    public List<Transaction> getTransactions() {
-        return transactions;
-    }
-
-    // Helper method to add transaction
-    public void addTransaction(Transaction transaction) {
-        transactions.add(transaction);
-        transaction.setAccount(this);
-    }
 }

@@ -4,6 +4,7 @@ import com.demo.online_banking_system.entity.Account;
 import com.demo.online_banking_system.entity.Transaction;
 import com.demo.online_banking_system.entity.User;
 import com.demo.online_banking_system.repository.AccountRepository;
+import com.demo.online_banking_system.repository.TransactionRepository;
 import com.demo.online_banking_system.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +18,8 @@ public class DataInitializer {
 
     @Bean
     CommandLineRunner initDatabase(UserRepository userRepository,
-                                   AccountRepository accountRepository) {
+                                   AccountRepository accountRepository,
+                                   TransactionRepository transactionRepository) {
         return args -> {
             if (userRepository.count() == 0) {
 
@@ -42,7 +44,7 @@ public class DataInitializer {
                 account.setAccountNumber("1234567890L");
                 account.setAccountType("Savings");
                 account.setBalance(new BigDecimal("2000"));
-//                accountRepository.save(account);
+                accountRepository.save(account);
 
                 // Transaction details.
                 Transaction T1 = new Transaction();
@@ -51,7 +53,7 @@ public class DataInitializer {
                 T1.setDescription("Initial Deposit");
                 T1.setTimestamp(LocalDateTime.now());
                 T1.setStatus("Credit");
-//                transactionRepository.save(T1);
+                transactionRepository.save(T1);
 
                 Transaction T2 = new Transaction();
                 T2.setAccount(account);
@@ -59,14 +61,7 @@ public class DataInitializer {
                 T2.setDescription("Shopping");
                 T2.setTimestamp(LocalDateTime.now());
                 T2.setStatus("Debit");
-//                transactionRepository.save(T2);
-
-                // Link transactions to account
-                account.addTransaction(T1);
-                account.addTransaction(T2);
-
-                // Save account (cascade saves transactions)
-                accountRepository.save(account);
+                transactionRepository.save(T2);
 
                 System.out.println("Sample data imported successfully!");
             }

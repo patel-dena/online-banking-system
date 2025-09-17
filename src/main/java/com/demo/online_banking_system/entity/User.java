@@ -91,8 +91,4 @@ public class User {
         this.zipcode = zipcode;
         this.role = role;
     }
-
-    public List<Account> getAccounts() {
-        return accounts;
-    }
 }

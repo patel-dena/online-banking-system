@@ -1,14 +1,15 @@
 package com.demo.online_banking_system.repository;
 
 import com.demo.online_banking_system.entity.Account;
+import com.demo.online_banking_system.entity.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface AccountRepository extends JpaRepository<Account, Long> {
+public interface TransactionRepository extends JpaRepository<Transaction, Long> {
 
-    // Retrieves accounts based on a user.
-    List<Account> findByAccountNumber(String accountNumber);
+    // Retrieves transactions based on a account.
+    List<Transaction> findByAccount(Account account);
 }
