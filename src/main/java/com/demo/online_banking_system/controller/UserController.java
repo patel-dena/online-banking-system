@@ -1,12 +1,10 @@
 package com.demo.online_banking_system.controller;
 
 import com.demo.online_banking_system.dto.UserDTO;
-import com.demo.online_banking_system.entity.User;
 import com.demo.online_banking_system.service.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +27,19 @@ public class UserController {
 
     // Get user by user_name.
     @GetMapping("/{username}")
-    public List<User> getUsersByName(@PathVariable String username) {
+    public List<UserDTO> getUsersByName(@PathVariable String username) {
         return userService.getUsersByName(username);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<String> register(@Valid @RequestBody UserDTO.RegistrationRequest request) {
+        userService.registerUser(request);
+        return ResponseEntity.ok("User registered successfully");
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@Valid @RequestBody UserDTO.LoginRequest request) {
+        String token = userService.login(request);
+        return ResponseEntity.ok(token); // in real system return JWT
     }
 }

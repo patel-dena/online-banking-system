@@ -8,6 +8,7 @@ import com.demo.online_banking_system.repository.TransactionRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,9 +28,9 @@ public class TransactionService {
     }
 
     public List<TransactionDTO> getTransactionByAccountNumber(String accountNumber) {
-        List<Account> account = accountRepository.findByAccountNumber(accountNumber);
+        Optional<Account> account = accountRepository.findByAccountNumber(accountNumber);
 
-        List<Transaction> transaction = transactionRepository.findByAccount(account.get(0));
+        List<Transaction> transaction = transactionRepository.findByAccount(account.get());
 
         return transaction.stream().map(this::convertTransactionToDTO).collect(Collectors.toList());
     }
