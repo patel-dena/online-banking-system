@@ -55,13 +55,18 @@ mvn spring-boot:run
 
 ## 📡 API Endpoints
 
+Users
+GET /api/users/{username} → Get user by user_name
+POST /api/users/register → Register User
+POST /api/users/login → Login User
+
 Accounts
-POST /api/accounts → Create new account
 GET /api/accounts/{accountNumber} → Get account details
+POST /api/accounts/create → Create new account
+POST /api/accounts/deposit → Deposit money
+POST /api/accounts/withdraw → Withdraw money
+POST /api/accounts/transfer → Transfer money
 
 Transactions
-POST /api/transactions/deposit → Deposit money
-POST /api/transactions/withdraw → Withdraw money
-POST /api/transactions/transfer → Transfer money
-GET /api/transactions/{accountNumber} → Get transaction history
+GET /api/transactions/account/{accountNumber} → Get transaction history by account number
 
